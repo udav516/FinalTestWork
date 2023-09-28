@@ -69,8 +69,8 @@ public class Menu {
                         }
                         System.out.print("Выберите домашнее или вьючное животное(pet/cart): ");
                         String temp = sc.nextLine();
-                        if (temp.equalsIgnoreCase("pet")){
-                            System.out.print("\nВведите индекс домашнего животного: ");
+                        if (temp.equalsIgnoreCase("pet")) {
+                            System.out.print("\nВведите порядковый индекс животного от 0: ");
                             int index = Integer.parseInt(sc.nextLine());
                             Pets selectedPet = pets.get(index);
                             System.out.print("Введите новую команду: ");
@@ -82,7 +82,7 @@ public class Menu {
                             continue;
                         }
                         if (temp.equalsIgnoreCase("cart")) {
-                            System.out.print("\nВведите индекс вьючного животного: ");
+                            System.out.print("\nВведите порядковый индекс животного от 0: ");
                             int index = Integer.parseInt(sc.nextLine());
                             Cartage selectedPet = cartages.get(index);
                             System.out.print("Введите новую команду: ");
@@ -106,7 +106,7 @@ public class Menu {
                         System.out.print("\nВыберите домашнее или вьючное животное(pet/cart): ");
                         String camp = sc.nextLine();
                         if (camp.equalsIgnoreCase("pet")) {
-                            System.out.print("\nВведите индекс домашнего животного: ");
+                            System.out.print("\nВведите порядковый индекс животного от 0: ");
                             int index = Integer.parseInt(sc.nextLine());
                             Pets selectedPet = pets.get(index);
                             selectedPet.showCommands();
@@ -117,7 +117,7 @@ public class Menu {
                             continue;
                         }
                         if (camp.equalsIgnoreCase("cart")) {
-                            System.out.print("\nВведите индекс вьючного животного: ");
+                            System.out.print("\nВведите порядковый индекс животного от 0: ");
                             int index = Integer.parseInt(sc.nextLine());
                             Cartage selectedCartage = cartages.get(index);
                             selectedCartage.showCommands();
