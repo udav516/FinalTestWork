@@ -34,7 +34,7 @@ public class Menu {
                             String type = sc.nextLine();
                             System.out.print("\nВведите имя питомца: ");
                             String name = sc.nextLine();
-                            System.out.print("Введите дату рождения питомца(гг-мм-дд): ");
+                            System.out.print("Введите дату рождения питомца(гггг-мм-дд): ");
                             LocalDate birthDate = LocalDate.parse(sc.nextLine());
                             Pets pet = null;
                             Cartage cartage = null;
@@ -67,7 +67,7 @@ public class Menu {
                             System.out.println("\nДомашних животных в реестре нет.!\n");
                             continue;
                         }
-                        System.out.println("Выберите домашнее или вьючное животное(pet/cart)");
+                        System.out.print("Выберите домашнее или вьючное животное(pet/cart): ");
                         String temp = sc.nextLine();
                         if (temp.equalsIgnoreCase("pet")){
                             System.out.print("\nВведите индекс домашнего животного: ");
@@ -103,7 +103,7 @@ public class Menu {
                             System.out.println("\nДомашних животных в реестре нет.!\n");
                             continue;
                         }
-                        System.out.println("\nВыберите домашнее или вьючное животное(pet/cart): ");
+                        System.out.print("\nВыберите домашнее или вьючное животное(pet/cart): ");
                         String camp = sc.nextLine();
                         if (camp.equalsIgnoreCase("pet")) {
                             System.out.print("\nВведите индекс домашнего животного: ");
