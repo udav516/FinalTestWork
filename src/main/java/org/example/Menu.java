@@ -1,5 +1,9 @@
 package org.example;
 
+import org.example.Cartage.Camel;
+import org.example.Cartage.Cartage;
+import org.example.Cartage.Donkey;
+import org.example.Cartage.Horse;
 import org.example.Pets.Cat;
 import org.example.Pets.Dog;
 import org.example.Pets.Hamster;
@@ -11,6 +15,7 @@ import java.util.*;
 public class Menu {
     public void showMenu() {
         ArrayList<Pets> pets = new ArrayList<>();
+        ArrayList<Cartage> cartages = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
         int choice = 0;
         do {
@@ -31,7 +36,8 @@ public class Menu {
                             String name = sc.nextLine();
                             System.out.print("Введите дату рождения питомца(гг-мм-дд): ");
                             LocalDate birthDate = LocalDate.parse(sc.nextLine());
-                            Pets pet;
+                            Pets pet = null;
+                            Cartage cartage = null;
                             if (type.equalsIgnoreCase("cat")) {
                                 pet = new Cat(name, birthDate, null);
                             } else if (type.equalsIgnoreCase("dog")) {
@@ -39,16 +45,17 @@ public class Menu {
                             } else if (type.equalsIgnoreCase("hamster")) {
                                 pet = new Hamster(name, birthDate, null);
                             } else if (type.equalsIgnoreCase("horse")) {
-                                pet = new Hamster(name, birthDate, null);
+                                cartage = new Horse(name, birthDate, null);
                             } else if (type.equalsIgnoreCase("camel")) {
-                                pet = new Hamster(name, birthDate, null);
+                                cartage = new Camel(name, birthDate, null);
                             } else if (type.equalsIgnoreCase("donkey")) {
-                                pet = new Hamster(name, birthDate, null);
+                                cartage = new Donkey(name, birthDate, null);
                             } else {
                                 System.out.println("Неверный тип питомца!");
                                 continue;
                             }
                             pets.add(pet);
+                            cartages.add(cartage);
                             System.out.println("Питомец успешно добавлен!\n");
                             counter.increment();
                         } catch (IllegalStateException e) {
@@ -60,12 +67,29 @@ public class Menu {
                             System.out.println("\nДомашних животных в реестре нет.!\n");
                             continue;
                         }
-                        System.out.print("\nВведите индекс домашнего животного: ");
-                        int index = Integer.parseInt(sc.nextLine());
-                        Pets selectedPet = pets.get(index);
-                        System.out.print("Введите новую команду: ");
-                        String command = sc.nextLine();
-                        selectedPet.addCommand(command);
+                        System.out.println("Выберите домашнее или вьючное животное(pet/cart)");
+                        String temp = sc.nextLine();
+                        if (temp.equalsIgnoreCase("pet")){
+                            System.out.print("\nВведите индекс домашнего животного: ");
+                            int index = Integer.parseInt(sc.nextLine());
+                            Pets selectedPet = pets.get(index);
+                            System.out.print("Введите новую команду: ");
+                            String command = sc.nextLine();
+                            selectedPet.addCommand(command);
+                        }
+                        if (cartages.size() == 0) {
+                            System.out.println("\nВьючных животных в реестре нет.!\n");
+                            continue;
+                        }
+                        if (temp.equalsIgnoreCase("cart")) {
+                            System.out.print("\nВведите индекс вьючного животного: ");
+                            int index = Integer.parseInt(sc.nextLine());
+                            Cartage selectedPet = cartages.get(index);
+                            System.out.print("Введите новую команду: ");
+                            String command = sc.nextLine();
+                            selectedPet.addCommand(command);
+                        }
+
                         System.out.println("Команда успешно добавлена!\n");
                         break;
                     case 4:
@@ -79,11 +103,27 @@ public class Menu {
                             System.out.println("\nДомашних животных в реестре нет.!\n");
                             continue;
                         }
-                        System.out.print("\nВведите индекс домашнего животного: ");
-                        index = Integer.parseInt(sc.nextLine());
-                        selectedPet = pets.get(index);
-                        selectedPet.showCommands();
-                        break;
+                        System.out.println("\nВыберите домашнее или вьючное животное(pet/cart): ");
+                        String camp = sc.nextLine();
+                        if (camp.equalsIgnoreCase("pet")) {
+                            System.out.print("\nВведите индекс домашнего животного: ");
+                            int index = Integer.parseInt(sc.nextLine());
+                            Pets selectedPet = pets.get(index);
+                            selectedPet.showCommands();
+                            break;
+                        }
+                        if (cartages.size() == 0) {
+                            System.out.println("\nВьючных животных в реестре нет.!\n");
+                            continue;
+                        }
+                        if (camp.equalsIgnoreCase("cart")) {
+                            System.out.print("\nВведите индекс вьючного животного: ");
+                            int index = Integer.parseInt(sc.nextLine());
+                            Cartage selectedCartage = cartages.get(index);
+                            selectedCartage.showCommands();
+                            break;
+                        }
+
                 }
             } catch (NumberFormatException e) {
                 System.out.println("\nНеверный выбор! Попробуйте еще раз.\n");
